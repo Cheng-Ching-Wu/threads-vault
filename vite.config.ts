@@ -4,6 +4,8 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
+  // GitHub Pages 部署在子路徑（/threads-vault/）；本機開發與 Android App 維持根路徑
+  base: process.env.VITE_BASE ?? '/',
   plugins: [vue()],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },

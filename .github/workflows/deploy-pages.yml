@@ -1,0 +1,62 @@
+# 推送到 main 時：執行測試 → 建置 → 部署到 GitHub Pages
+# 網址：https://cheng-ching-wu.github.io/threads-vault/
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一時間只跑一個部署，新的推送會取消還在排隊的舊部署
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 安裝套件
+        run: npm ci
+
+      - name: 型別檢查、Lint、測試
+        run: |
+          npm run typecheck
+          npm run lint
+          npm test
+
+      - name: 建置（子路徑 /threads-vault/）
+        run: npm run build
+        env:
+          VITE_BASE: /${{ github.event.repository.name }}/
+
+      # GitHub Pages 沒有 SPA 路由：直接開啟 /tabs/settings 等網址時會找 404.html，
+      # 讓它載入同一個 App，再由前端路由顯示正確頁面
+      - name: 加入 404.html（讓直接開啟子頁面的網址也能運作）
+        run: cp dist/index.html dist/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
