@@ -3,18 +3,18 @@ import { extractThreadsUrl, parseThreadsUrl } from '@/services/import/threadsUrl
 
 describe('parseThreadsUrl', () => {
   it('支援 threads.com/t/ID', () => {
-    expect(parseThreadsUrl('https://www.threads.com/t/DetGsVPE0bP')).toEqual({
-      postId: 'DetGsVPE0bP',
+    expect(parseThreadsUrl('https://www.threads.com/t/Xy9Kp2LmQ4r')).toEqual({
+      postId: 'Xy9Kp2LmQ4r',
       username: null,
-      canonicalUrl: 'https://www.threads.com/t/DetGsVPE0bP',
+      canonicalUrl: 'https://www.threads.com/t/Xy9Kp2LmQ4r',
     });
   });
 
   it('支援 threads.net/t/ID 並統一成 threads.com', () => {
-    expect(parseThreadsUrl('https://www.threads.net/t/DetGsVPE0bP')?.canonicalUrl).toBe(
-      'https://www.threads.com/t/DetGsVPE0bP',
+    expect(parseThreadsUrl('https://www.threads.net/t/Xy9Kp2LmQ4r')?.canonicalUrl).toBe(
+      'https://www.threads.com/t/Xy9Kp2LmQ4r',
     );
-    expect(parseThreadsUrl('https://threads.net/t/DetGsVPE0bP')?.postId).toBe('DetGsVPE0bP');
+    expect(parseThreadsUrl('https://threads.net/t/Xy9Kp2LmQ4r')?.postId).toBe('Xy9Kp2LmQ4r');
   });
 
   it('支援 @user/post/ID 並取得使用者名稱', () => {
@@ -25,22 +25,22 @@ describe('parseThreadsUrl', () => {
   });
 
   it('移除追蹤參數與 hash', () => {
-    expect(parseThreadsUrl('https://www.threads.com/t/DetGsVPE0bP?xmt=AQGz&slof=1#top')?.canonicalUrl).toBe(
-      'https://www.threads.com/t/DetGsVPE0bP',
+    expect(parseThreadsUrl('https://www.threads.com/t/Xy9Kp2LmQ4r?xmt=AQGz&slof=1#top')?.canonicalUrl).toBe(
+      'https://www.threads.com/t/Xy9Kp2LmQ4r',
     );
     expect(
-      parseThreadsUrl('https://www.threads.net/@user/post/DetGsVPE0bP/?igshid=abc&utm_source=ig')?.postId,
-    ).toBe('DetGsVPE0bP');
+      parseThreadsUrl('https://www.threads.net/@user/post/Xy9Kp2LmQ4r/?igshid=abc&utm_source=ig')?.postId,
+    ).toBe('Xy9Kp2LmQ4r');
   });
 
   it('不同格式的同一貼文得到相同 postId', () => {
     const ids = [
-      'https://www.threads.com/t/DetGsVPE0bP',
-      'https://www.threads.net/t/DetGsVPE0bP?x=1',
-      'https://www.threads.com/@abc/post/DetGsVPE0bP',
-      'threads.com/t/DetGsVPE0bP',
+      'https://www.threads.com/t/Xy9Kp2LmQ4r',
+      'https://www.threads.net/t/Xy9Kp2LmQ4r?x=1',
+      'https://www.threads.com/@abc/post/Xy9Kp2LmQ4r',
+      'threads.com/t/Xy9Kp2LmQ4r',
     ].map((u) => parseThreadsUrl(u)?.postId);
-    expect(new Set(ids)).toEqual(new Set(['DetGsVPE0bP']));
+    expect(new Set(ids)).toEqual(new Set(['Xy9Kp2LmQ4r']));
   });
 
   it('拒絕非 Threads 網址與空值', () => {

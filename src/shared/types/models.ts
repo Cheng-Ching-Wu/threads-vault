@@ -10,7 +10,7 @@ export type BookmarkSource = 'meta_export' | 'json' | 'csv' | 'share' | 'manual'
 export interface Bookmark {
   id: string;
   platform: Platform;
-  /** 從 Threads 網址取得的貼文代碼（shortcode），例如 DetGsVPE0bP */
+  /** 從 Threads 網址取得的貼文代碼（shortcode），例如 Xy9Kp2LmQ4r */
   platformPostId: string | null;
   /** Meta 匯出中的 fbid；不保證與 shortcode 有任何對應關係 */
   fbid: string | null;
