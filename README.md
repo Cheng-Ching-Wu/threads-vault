@@ -4,6 +4,7 @@
 
 - **本機模式（預設）**：資料只存在你的裝置（Web 版用 IndexedDB、Android / iOS 用 SQLite），不需登入、不上傳任何伺服器。
 - **雲端同步（選用）**：登入後改用 Cloud Firestore，手機與電腦即時同步；離線也能用，恢復連線後自動上傳。
+- **網頁版**：https://cheng-ching-wu.github.io/threads-vault/ （推送到 `main` 後由 GitHub Actions 自動測試、建置並部署，設定在 [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml)）
 - **技術**：Vue 3 + TypeScript（strict）+ Vite + Ionic Vue + Pinia + Vue Router + Capacitor + Zod + Vitest。
 
 ---
