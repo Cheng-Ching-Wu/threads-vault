@@ -1,0 +1,45 @@
+# 依賴與建置輸出
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.vite/
+test-results/
+playwright-report/
+
+# 私人收藏資料：絕不提交
+saved_threads*.json
+liked_threads*.json
+threads-*/
+output/
+exports/
+backups/
+*.local.json
+threads-vault-backup-*.json
+threads-vault-export-*.csv
+*.db
+*.sqlite
+*.sqlite3
+
+# 編輯器 / 系統
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Capacitor 原生建置產物
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+android/app/src/main/assets/public/
+ios/App/Pods/
+ios/App/build/
+tmp-private/
+
+# Firebase 模擬器
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+.firebase/

@@ -1,0 +1,80 @@
+/* Threads Vault 主題：簡潔、資訊導向（參考 Notion / Raindrop.io） */
+:root {
+  --ion-color-primary: #4f46e5;
+  --ion-color-primary-rgb: 79, 70, 229;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #463ec9;
+  --ion-color-primary-tint: #6159e7;
+
+  --ion-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC',
+    'Microsoft JhengHei', sans-serif;
+
+  --tv-surface: #ffffff;
+  --tv-surface-muted: #f6f6f8;
+  --tv-border: #e7e7ec;
+  --tv-text-muted: #6b7280;
+  --tv-radius: 12px;
+  --ion-background-color: #f6f6f8;
+  --ion-toolbar-background: #f6f6f8;
+  --ion-item-background: #ffffff;
+}
+
+/* 需高於 Ionic 的 .ion-palette-dark.ios 選擇器，才能覆蓋預設的純黑背景 */
+html.ion-palette-dark,
+html.ion-palette-dark.ios,
+html.ion-palette-dark.md,
+html.ion-palette-dark.ios ion-modal {
+  --tv-surface: #1c1c1f;
+  --tv-surface-muted: #121214;
+  --tv-border: #2c2c31;
+  --tv-text-muted: #9ca3af;
+  --ion-background-color: #121214;
+  --ion-toolbar-background: #121214;
+  --ion-item-background: #1c1c1f;
+  --ion-color-primary: #818cf8;
+  --ion-color-primary-rgb: 129, 140, 248;
+  --ion-color-primary-contrast: #0b0b0f;
+  --ion-color-primary-shade: #727bda;
+  --ion-color-primary-tint: #8e98f9;
+}
+
+.tv-muted {
+  color: var(--tv-text-muted);
+}
+
+.tv-card {
+  background: var(--tv-surface);
+  border: 1px solid var(--tv-border);
+  border-radius: var(--tv-radius);
+}
+
+.tv-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--tv-text-muted);
+  margin: 20px 16px 8px;
+}
+
+.tv-pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.tv-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+
+/* 桌面寬螢幕時把內容置中，維持手機優先的閱讀寬度 */
+.tv-container {
+  max-width: 820px;
+  margin: 0 auto;
+}
